@@ -1,4 +1,4 @@
-###### Complete as of 09/10/2019
+###### Completed on 09/10/2019
 # Logs Analysis
 
 A python script that queries a database and prints the answer to three questions:
@@ -12,7 +12,7 @@ A python script that queries a database and prints the answer to three questions
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [Launch](#launch)
-- [What have I done?](#what-have-i-done?)
+- [What have I done?](#what-have-i-done)
 
 
 ## Introduction
