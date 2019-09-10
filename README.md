@@ -1,4 +1,4 @@
-###### Incomplete as of 09/09/2019
+###### Updated as of 09/10/2019
 # Logs Analysis
 
 A python script that queries a database and prints the answer to three questions:
