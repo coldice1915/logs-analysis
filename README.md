@@ -1,4 +1,4 @@
-###### Updated as of 09/10/2019
+###### Complete as of 09/10/2019
 # Logs Analysis
 
 A python script that queries a database and prints the answer to three questions:
@@ -116,11 +116,10 @@ Download and unzip this file: [logs_analysis_project-master.zip](https://github.
 - [x] Interacted with the database from both the command line and my code
 - [x] Ran SQL commands to view tables and data types within the large database
 - [x] Ran SQL statements to analyze the log data (SELECT, WHERE, JOIN, etc.)
-- [x] Tested queries to better understand complex relationships
+- [x] Tested queries to better understand table relationships
 - [x] Built queries to answer the three questions
-- [x] Created views to the database to refine queries
-- [x] Drew business conclusions by answering significant questions
-- [x] Connected Python code to the database using psycopg2, a PostgreSQL database adapter
+- [x] Added views to the database to refine queries
+- [x] Connected Python code to the database using `psycopg2`, a PostgreSQL database adapter
 - [x] Cleaned and edited code for readability
 - [x] Submitted project for review
 
