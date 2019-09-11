@@ -124,7 +124,8 @@ Download and unzip this file: [logs_analysis_project-master.zip](https://github.
 - [x] Added views to the database to refine queries
 - [x] Connected Python code to the database using `psycopg2`, a PostgreSQL database adapter
 - [x] Cleaned and edited code for readability
-- [x] Submitted project for review
+- [x] Packaged and submitted project for review
+- [x] Received project feedback and committed changes as per reviewer
 
 ##### Sources
 Udacity
