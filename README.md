@@ -12,6 +12,7 @@ A python script that queries a database and prints the answer to three questions
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [Launch](#launch)
+- [Author](#author)
 - [What have I done?](#what-have-i-done)
 
 
@@ -64,7 +65,7 @@ CREATE VIEW articles_author AS
 CREATE VIEW top_articles AS
     SELECT articles.title, count(log.path)
     FROM articles
-    JOIN log ON log.path LIKE concat('%',articles.slug) 
+    JOIN log ON log.path = concat('%',articles.slug) 
     GROUP BY articles.title ORDER BY count(log.path) desc limit 3;
 ```
 
@@ -79,20 +80,20 @@ CREATE VIEW articles_author AS
 CREATE VIEW article_views AS
     SELECT articles.title, count(log.path)
     FROM articles
-    JOIN log ON log.path LIKE concat('%',articles.slug) 
+    JOIN log ON log.path = concat('%',articles.slug) 
     GROUP BY articles.title ORDER BY count(log.path) desc;
 ```
 
 #### Views for Question 3
 ```sql
 CREATE VIEW daily_logs AS
-    SELECT to_char(time,'DD-MON-YYYY') as date, count(*) as log_count
+    SELECT date(time) as date, count(*) as log_count
     FROM log
     GROUP BY date;
 ```
 ```sql
 CREATE VIEW error_logs AS
-    SELECT to_char(time,'DD-MON-YYYY') as date, count(*) as error_count
+    SELECT date(time) as date, count(*) as error_count
     FROM log
     WHERE STATUS = '404 NOT FOUND'
     GROUP BY date ORDER BY date;
@@ -110,6 +111,8 @@ Download and unzip this file: [logs_analysis_project-master.zip](https://github.
 ### 2. Run the script
 `cd` to the directory and run `python logs_analysis.py` to execute the script
 
+## Author
+***[James Han](https://www.linkedin.com/in/question-not-doubt/)***
 
 ## What have I done?
 - [x] Installed and launched a virtual machine to create a familiar environment
@@ -122,7 +125,6 @@ Download and unzip this file: [logs_analysis_project-master.zip](https://github.
 - [x] Connected Python code to the database using `psycopg2`, a PostgreSQL database adapter
 - [x] Cleaned and edited code for readability
 - [x] Submitted project for review
-
 
 ##### Sources
 Udacity
