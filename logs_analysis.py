@@ -2,14 +2,30 @@
 # -*- coding: utf-8 -*-
 
 # A reporting tool that answers three questions about 'newsdata.sql'
+# Question 1: What are the most popular three articles of all time?
+# Question 2: Who are the most popular article authors of all time?
+# Question 3: On which days did more than 1% of requests lead to errors?
 
-# Import postgresql library
+__author__ = 'JamesHan'
 import psycopg2
+try:
+    db = psycopg2.connect(database="news")
+    print ("Connection to the news database successful!")
+except psycopg2.connect.Error as e:
+    print ("Oh no, a connection error has occurred!")
 
-# Database
-DBNAME = "news"
 
-# Queries
+# Helper function in executing and returning queries
+def get_results(query):
+    cursor = db.cursor()
+    cursor.execute(query)
+    results = cursor.fetchall()
+    db.commit()
+    cursor.close()
+    return results
+
+
+# Query statements
 query1 = """SELECT *
             FROM top_articles;"""
 
@@ -28,40 +44,31 @@ query3 = """SELECT error_logs.date,
             AND error_count > log_count/100;"""
 
 
-def connect(query):
-    db = psycopg2.connect(database=DBNAME)
-    c = db.cursor()
-    c.execute(query)
-    results = c.fetchall()
-    db.close()
-    return results
-
-
-# Question 1: What are the most popular three articles of all time?
-def top_three_articles(query):
-    results = connect(query)
-    print('\n The three most viewed articles of July 2016:\n')
+# Defining the three answers
+def top_articles(query):
+    results = get_results(query)
+    print ('Q.1|| What are the most popular three articles of all time?\n')
     for (article, view) in results:
-        print('\t{0} - {1} views\n'.format(article, view))
+        print ('\t{0} - {1} views\n'.format(article, view))
 
 
-# Question 2: Who are the most popular article authors of all time?
 def top_authors(query):
-    connect(query)
-    print('\n The most popular authors of July 2016:\n')
-    for (author, views) in connect:
-        print('\t{0} - {1} views\n'.format(author, views))
+    results = get_results(query)
+    print ('Q.2|| Who are the most popular article authors of all time?\n')
+    for (author, views) in results:
+        print ('\t{0} - {1} views\n'.format(author, views))
 
 
-# Question 3: On which days did more than 1% of requests lead to errors?
-def error(query):
-    connect(query)
-    print('\n The day >1% of requests led to a 404 error:\n')
-    for (date, error) in connect:
-        print('\t{0} - {1}% 404 errors\n'.format(date, error))
+def error_percent(query):
+    results = get_results(query)
+    print ('Q.3|| Which day did more than 1% of requests lead to an error?\n')
+    for (date, error) in results:
+        print ('\t{0} - {1}% 404 errors\n'.format(date, error))
 
 
-# Print results to three questions
-top_three_articles(query1)
-top_authors(query2)
-error(query3)
+# Printing the answers to the three questions
+answer_1 = top_articles(query1)
+answer_2 = top_authors(query2)
+answer_3 = error_percent(query3)
+
+db.close()
