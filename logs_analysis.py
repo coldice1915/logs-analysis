@@ -29,10 +29,7 @@ query3 = """SELECT error_logs.date,
 
 
 def connect(query):
-    try:
-        db = psycopg2.connect(database=DBNAME)
-    except psycopg2.Error:
-        pass
+    db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
     c.execute(query)
     results = c.fetchall()
@@ -44,24 +41,24 @@ def connect(query):
 def top_three_articles(query):
     results = connect(query)
     print('\n The three most viewed articles of July 2016:\n')
-    for article, views in results:
-        print('\t{} - {} views\n'.format(article, views))
+    for (article, view) in results:
+        print('\t{0} - {1} views\n'.format(article, view))
 
 
 # Question 2: Who are the most popular article authors of all time?
 def top_authors(query):
-    results = connect(query)
+    connect(query)
     print('\n The most popular authors of July 2016:\n')
-    for author, views in results:
-        print('\t{} - {} views\n'.format(author, views))
+    for (author, views) in connect:
+        print('\t{0} - {1} views\n'.format(author, views))
 
 
 # Question 3: On which days did more than 1% of requests lead to errors?
 def error(query):
-    results = connect(query)
+    connect(query)
     print('\n The day >1% of requests led to a 404 error:\n')
-    for date, error in results:
-        print('\t{} - {}% 404 errors\n'.format(date, error))
+    for (date, error) in connect:
+        print('\t{0} - {1}% 404 errors\n'.format(date, error))
 
 
 # Print results to three questions
