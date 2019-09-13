@@ -27,7 +27,7 @@ My task is to create a reporting tool that prints out reports (in plain text) ba
 
 
 ## Technologies
-Terminal (macOS) • Python 2.7.16 • Psycopg 2.8.3 • Vagrant 2.2.0 • VirtualBox 6.0.10
+Python 2.7.16 • Psycopg 2.8.3 • Vagrant 2.2.0 • VirtualBox 6.0.10
 
 
 ## Setup
